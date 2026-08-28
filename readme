@@ -1,1 +1,59 @@
-texto
+# WaSap for WHMCS
+
+Addon de notificações para WhatsApp via WaSap para eventos financeiros, tickets, serviços e domínios do WHMCS. A distribuição deste repositório é a versão **5.0.4**.
+
+> **Nota da versão 5.0.x:** constantes de versões anteriores deixaram de ser suportadas. Personalizações devem usar somente as constantes públicas da versão atual.
+
+## Compatibilidade e requisitos
+
+Esta versão tem como alvo a seguinte matriz (versões futuras do WHMCS ou outras combinações não devem ser consideradas compatíveis sem validação):
+
+- **WHMCS:** 8.13.1 ou superior;
+- **PHP:** somente PHP 8.2, 8.3 ou 8.4, com ionCube Loader 15;
+- **WaSap:** um plano [WaSap](https://wasap.com.br/) ativo, com pelo menos uma conexão de WhatsApp habilitada;
+- **Emojis:** para usar templates de mensagens com emojis, banco de dados compatível com UTF8MB4 e `$mysql_charset = 'utf8mb4'` na configuração do WHMCS;
+- **Carregamento de arquivos codificados:** a opção **Tentativa de carregar todos os arquivos** habilitada.
+
+Também são necessários:
+
+- PHP cURL habilitado tanto na Web quanto no cron;
+- comunicação HTTPS, DNS e certificados TLS válidos, com **System URL** e **SSL System URL** canônicas em HTTPS;
+- cron oficial do WHMCS configurado e executado regularmente para processar a fila pelo hook `AfterCronJob`;
+- acesso aos arquivos e acesso administrativo para ativar/configurar addons, além de permissão do banco para criar e alterar tabelas;
+- para o SSO recomendado, credencial de API ligada a uma função administrativa com acesso à API e permissão `CreateSsoToken`, também adicione o IP do próprio servidor em 'API IP Access'.
+
+## Funcionalidades
+
+- Notificações de faturas, tickets, serviços e renovação de domínios.
+- Fila de envio e logs operacionais.
+- Preferências de opt-in/opt-out e templates com variáveis.
+- Alertas para administradores e login único do cliente.
+
+## Instalação
+
+1. Faça backup do banco e dos arquivos.
+2. Copie **toda** a pasta `modules/addons/wasap_for_whmcs/` para o caminho de mesmo nome sob a raiz do WHMCS, preservando nome e subpastas.
+3. Copie `wasap-login.php` para a raiz pública da mesma instalação, ao lado de `init.php` e `clientarea.php`; não o coloque em `modules/`.
+4. Confirme permissões de leitura, acesso do banco e ionCube/cURL nos SAPIs da Web e do cron.
+5. Em **Configurações do Sistema > Módulos Addon**, ative o módulo e conceda acesso às funções administrativas autorizadas.
+
+## Configuração inicial
+
+1. Habilite o módulo e preencha URL base HTTPS, token, `userId`, `queueId` e `whatsappId` do WaSap.
+2. Configure fila e limite, consentimento/opt-in, destinatários e templates; salve e confira o diagnóstico.
+3. Para SSO, crie uma credencial dedicada com `CreateSsoToken`, preencha o Identifier e o Secret no addon e mantenha o fluxo inteiro na URL HTTPS canônica.
+4. Mantenha o cron oficial ativo e valide um envio e um link de login em homologação.
+
+Consulte o [Manual do cliente](docs/MANUAL-DO-CLIENTE.md) para o procedimento completo e a solução de problemas.
+
+## Atualização
+
+1. Confirme nas notas da versão a matriz de WHMCS, PHP e ionCube; pause o cron em uma janela de manutenção.
+2. Faça backup verificável da pasta do addon, de `wasap-login.php` e do banco do WHMCS.
+3. Substitua a pasta completa e o endpoint pelos artefatos da mesma versão, sem desinstalar o addon nem executar SQL não documentado.
+4. Abra o módulo para aplicar eventuais migrações, revise a configuração e teste envio, fila e SSO.
+5. Reative o cron e monitore registros e logs.
+
+## Atualizações públicas
+
+As versões públicas oficiais são publicadas em <https://github.com/wasap-cloud/WaSap-for-WHMCS>. O painel administrativo consulta o release mais recente desse repositório.
