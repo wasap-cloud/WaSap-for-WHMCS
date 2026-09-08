@@ -1,7 +1,8 @@
 # WaSap for WHMCS
 
-![WaSap for WHMCS | Configurações](screenshots/configuracao.png)
-![WaSap for WHMCS | Templates](screenshots/templates.png)
+![WaSap for WHMCS | Configurações](screenshots/config_wasap_for_whmcs.png)
+![WaSap for WHMCS | Templates](screenshots/config_wasap_for_whmcs_templates.png)
+![WaSap for WHMCS | Templates](screenshots/config_wasap_for_whmcs_envio_manual.png)
 
 Addon de notificações para WhatsApp via WaSap para eventos financeiros, tickets, serviços e domínios do WHMCS. A distribuição deste repositório é a versão **5.0.4**.
 
