@@ -17,6 +17,7 @@ Esta versão tem como alvo a seguinte matriz (versões futuras do WHMCS ou outra
 - **WaSap:** um plano [WaSap](https://wasap.com.br/) ativo, com pelo menos uma conexão de WhatsApp habilitada;
 - **Emojis:** para usar templates de mensagens com emojis, banco de dados compatível com UTF8MB4 e `$mysql_charset = 'utf8mb4'` na configuração do WHMCS;
 - **Carregamento de arquivos codificados:** a opção **Tentativa de carregar todos os arquivos** habilitada.
+- **Download do módulo:** Baixe o arquivo wasap_plugin_whmcs.zip em [releases](https://github.com/wasap-cloud/WaSap-for-WHMCS/releases).
 
 Também são necessários:
 
